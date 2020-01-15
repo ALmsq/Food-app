@@ -33,7 +33,8 @@ ReactDOM.render(
     <Provider store={store}>
     <Router>
         <App>
-            <NavBar/>
+            {/* <NavBar/> */}
+
         </App>
     </Router>
     </Provider>

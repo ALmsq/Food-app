@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Pizza from './Pizza'
 
 
 //routing
@@ -44,7 +45,7 @@ import {connect} from 'react-redux'
       <div>
         
         <NavBar/>
-        
+        <Pizza/>
         <Switch>
           <Route path='/login' render={() => <Login/>}/>
           <Route path='/home' render={() => <HomePage/>}/>
