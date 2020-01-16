@@ -27,19 +27,25 @@ import {connect} from 'react-redux'
 //     },
 //     [dispatch]
 //     )
-
+    
     const state = useSelector(state => {
       return{
         place: state.place,
+        query: state.query
         // encodedPlace: state.encodedPlace
       }
     })
+    
     const dispatch = useDispatch()
-    console.log(state)
+    
     useEffect(() => {
-      dispatch(actions.getPlace())
-    }, [])
-
+      
+      dispatch(actions.getPlace(state.query))
+      
+      // dispatch(actions.getQuery())
+      console.log(state.query)
+    }, [state.query])
+    
 
     return (
       <div>

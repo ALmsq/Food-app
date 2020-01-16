@@ -3,7 +3,7 @@ import React from 'react'
 
 
 const Place = (c) => {
-    console.log(c.c.name)
+    // console.log(c.c.name)
     return (
         <div>
             <h3>{c.c.name}</h3>

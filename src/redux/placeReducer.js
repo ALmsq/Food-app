@@ -1,7 +1,7 @@
-// const initialState = {
-//     place: [],
-//     placesArr: []
-// }
+const initialState = {
+    place: [],
+    placesArr: []
+}
 
 // const placeReducer = (state = initialState, action) => {
 //     switch (action.type){

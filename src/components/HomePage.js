@@ -20,10 +20,12 @@ import { useSelector } from 'react-redux'
 
 const HomePage = () => {
         const places = useSelector(state => state.place)
+        const query = useSelector(state => state.query)
         console.log(places)
+        console.log(query)
 
         const generateCards = () => {
-            return places.map(c => <Place c={c} />);
+            return places.map(c => <Place c={c} key={c.id} />);
           };
 
         return(

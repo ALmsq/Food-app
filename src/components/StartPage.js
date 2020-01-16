@@ -36,6 +36,7 @@ class StartPage extends React.Component {
         //     [place.target.name]: place.target.value
         // })
       };
+      
     
       handleSelect = (place, encodedPlace) => {
         // geocodeByplace(place)
@@ -44,7 +45,7 @@ class StartPage extends React.Component {
                 place: place,
                 encodedPlace: place
             })
-            console.log(this.state)
+            // console.log(this.state)
             // this.setState({
             //     redirect: true,
             //     place: place
@@ -58,22 +59,28 @@ class StartPage extends React.Component {
 
       handleSubmit = (evt) => {
           evt.preventDefault()
-          console.log(this.state.place)
+          // console.log(this.state.place)
           let uri = this.state.place
           const uri2 = this.state.encodedPlace
           const encoded = encodeURI(uri).replace(/,/g, '')
           const encoded2 = encodeURI(uri2).replace(/,/g, '')
-          console.log(encoded2)
+          // console.log(encoded2)
           
           this.setState({
             redirect: true,
             encodedPlace: encoded2
-          }, () => {
-            this.props.addPlace(this.state)
           }
           
+          // }, () => {
+          //   this.props.addPlace(this.state)
+          // }
+          
           )
-
+          // console.log(this.props.addPlace(this.state))
+          // console.log(this.props.getQuery(this.state.encodedPlace))
+          // this.props.getQuery(this.state['encodedPlace'])
+          // console.log(this.state['encodedPlace'])
+          
 
 
           // this.props.addPlace(this.state.place)
@@ -87,8 +94,15 @@ class StartPage extends React.Component {
 
     
       render() {
-        console.log(this.state.encodedPlace)
-        console.log(this.state)
+        // console.log(this.props.fetchQuery(this.state.encodedPlace))
+        // console.log(this.props.getQuery(this.state.encodedPlace))
+        // console.log(this.props.fetchPlace(this.state.encodedPlace))
+        // this.props.fetchPlace(this.state.encodedPlace)
+        this.props.getQuery(this.state.encodedPlace)
+        this.props.fetchQuery(this.state.encodedPlace)
+        // console.log(this.props)
+        // console.log(this.state.encodedPlace)
+        // console.log(this.state)
         if (this.state.redirect) {
             return <Redirect push to="/home" />;
           }
@@ -143,8 +157,11 @@ class StartPage extends React.Component {
 // let connectFunc = connect(null, { addPlace })(StartPage)
 let googleApi = GoogleApiWrapper({apiKey: API_KEY})(StartPage)
 let addPlace = actions.addPlace
+let getQuery = actions.getQuery
+let fetchQuery = actions.fetchQuery
+let fetchPlace = actions.fetchPlace
 
-export default connect(null, {addPlace})(googleApi) ;
+export default connect(null, {addPlace, getQuery, fetchQuery, fetchPlace})(googleApi) ;
 
 
 /////////////////////////////////////

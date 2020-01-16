@@ -17,10 +17,11 @@ import NavBar from './components/NavBar';
 
 //REDUCERS
 import place from './redux/placeReducer'
+import query from './redux/queryReducer'
 
 const rootReducer = combineReducers({
-    place: place
-
+    place: place,
+    query: query
   })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
