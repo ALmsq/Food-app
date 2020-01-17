@@ -4,6 +4,7 @@ import PlacesAutocomplete, { geocodeByAddress,getLatLng, } from 'react-places-au
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router'
+import { Input } from 'semantic-ui-react'
 
 /* global google */
 
@@ -116,7 +117,7 @@ class StartPage extends React.Component {
               
             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
               <div className='image'>
-                <input
+                <Input  action='search' 
                   {...getInputProps({
                     placeholder: 'Search Location ...',
                     className: 'location-search-input',
@@ -148,7 +149,7 @@ class StartPage extends React.Component {
               </div>
             )}
           </PlacesAutocomplete>
-          <input type='submit' value='submit'/>
+          {/* <input type='submit' value='submit'/> */}
           </form>
         );
       }

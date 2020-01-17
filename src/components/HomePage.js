@@ -2,7 +2,7 @@ import React from 'react'
 import Place from './Place'
 import { connect } from 'react-redux'
 import { useSelector } from 'react-redux'
-
+import { Grid, Image } from 'semantic-ui-react'
 
 
 // class HomePage extends Component {
@@ -24,16 +24,25 @@ const HomePage = () => {
         console.log(places)
         console.log(query)
 
+        const onClick = (e) => {
+            console.log('yo')
+        }
+
         const generateCards = () => {
-            return places.map(c => <Place c={c} key={c.id} />);
+            return places.map(c => <Place c={c} key={c.id} onClick={onClick} />);
           };
 
         return(
-            <div>
-                <h1>Featured Spots</h1>
-                {generateCards()}
+            // <div>
+            //     <h1>Featured Spots</h1>
+            //     {generateCards()}
 
-            </div>
+            // </div>
+            <Grid columns={3} divided>
+                <Grid.Row>
+                        {generateCards()}
+                </Grid.Row>
+            </Grid>
         )
 }
 

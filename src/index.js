@@ -9,6 +9,8 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
 import NavBar from './components/NavBar';
+import 'semantic-ui-css/semantic.min.css'
+
 
 
 

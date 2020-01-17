@@ -1,5 +1,5 @@
 const initialState = {
-    query: ''
+    query: 'dumbo'
 }
 
 export default (state = initialState, { type, payload }) => {

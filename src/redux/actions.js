@@ -37,7 +37,7 @@ const fetchQuery = (query) => ({
 
   function fetchPlace(query){
     return dispatch => {
-      fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+near+${query}&rankby=prominence&
+      fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+near+${query}&
     &key=${API_KEY}`)
       .then(r => r.json())
       .then((placeArr) => { dispatch(getPlaceAction(placeArr.results))
