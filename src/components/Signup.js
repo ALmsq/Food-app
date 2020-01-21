@@ -1,38 +1,37 @@
 // import React, { useState } from 'react';
 // import { useDispatch } from 'react-redux';
-// import userActions from '../redux/actions';
-// import { useHistory } from "react-router-dom"
+// import userActions from '../redux/actions.js';
 
-// const Login = props => {
+
+// const Signup = props => {
 //   // initializing dispatch
 //   const dispatch = useDispatch();
+
 //   // Setting up local state using the useState hook
-//   const [loginForm, setLoginForm] = useState({
+//   const [signupForm, setSignupForm] = useState({
 //     username: '',
 //     password: ''
 //   });
 
-//   let history = useHistory();
-//   // controlled form functions
+//   // Controlled form functions
+//   const handleChange = e =>
+//     setSignupForm({ ...signupForm, [e.target.name]: e.target.value });
+
 //   const handleSubmit = e => {
 //     e.preventDefault();
-//     dispatch(userActions.loginUserToDB(loginForm));
-//     history.push("/home");
+//     const { history } = props;
+//     dispatch(userActions.newUserToDB(signupForm));
+//     // history.push('/');
+//     console.log({history})
 //   };
 
-//   const handleChange = e =>
-//     setLoginForm({ ...loginForm, [e.target.name]: e.target.value });
-
 //   // Destructuring keys from our local state to use in the form
-//   const { username, password } = loginForm;
-
-//   console.log(props)
-
+//   const { username, password } = signupForm;
+//   // console.log(props)
 //   // Component code
 //   return (
-//       console.log(loginForm),
 //     <form onSubmit={handleSubmit}>
-//       <h1>Login Page</h1>
+//       <h1>Signup Page</h1>
 //       <input
 //         type="text"
 //         name="username"
@@ -52,14 +51,14 @@
 //   );
 // };
 
-// export default Login;
+// export default Signup;
 
-/////////////////////
+
+/////////////////////////////////////////
 
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import userActions from '../redux/actions';
-import { useHistory } from "react-router-dom"
+import userActions from '../redux/actions.js';
 import { Link } from 'react-router-dom'
 
 
@@ -95,7 +94,7 @@ const useStyles = makeStyles(theme => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(https://source.unsplash.com/1600x900/?food,restaurants)',
+    backgroundImage: 'url(https://source.unsplash.com/random)',
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'dark' ? theme.palette.grey[900] : theme.palette.grey[50],
@@ -121,32 +120,32 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Login = props => {
+const Signup = props => {
   const classes = useStyles();
 
-  //  initializing dispatch
+  // initializing dispatch
   const dispatch = useDispatch();
+
   // Setting up local state using the useState hook
-  const [loginForm, setLoginForm] = useState({
+  const [signupForm, setSignupForm] = useState({
     username: '',
     password: ''
   });
 
-  let history = useHistory();
-  // controlled form functions
+  // Controlled form functions
+  const handleChange = e =>
+    setSignupForm({ ...signupForm, [e.target.name]: e.target.value });
+
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(userActions.loginUserToDB(loginForm));
-    history.push("/home");
+    const { history } = props;
+    dispatch(userActions.newUserToDB(signupForm));
+    // history.push('/');
+    console.log({history})
   };
 
-  const handleChange = e =>
-    setLoginForm({ ...loginForm, [e.target.name]: e.target.value });
-
   // Destructuring keys from our local state to use in the form
-  const { username, password } = loginForm;
-
-
+  const { username, password } = signupForm;
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -158,24 +157,23 @@ const Login = props => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Log in
+            Sign Up
           </Typography>
-        <form className={classes.form} noValidate onSubmit={handleSubmit}>
+          <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <TextField
               variant="outlined"
               margin="normal"
               required
               fullWidth
-              id="login"
-              label="Login"
+              id="email"
+              label="Username"
               name="username"
-              autoComplete="login"
+              autoComplete="username"
+              autoFocus
 
-              
               value={username}
               onChange={handleChange}
 
-              autoFocus
             />
             <TextField
               variant="outlined"
@@ -188,9 +186,9 @@ const Login = props => {
               id="password"
               autoComplete="current-password"
 
-              
               value={password}
               onChange={handleChange}
+
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -203,7 +201,7 @@ const Login = props => {
               color="primary"
               className={classes.submit}
             >
-              Log In
+              Sign Up
             </Button>
             <Grid container>
               <Grid item xs>
@@ -212,8 +210,8 @@ const Login = props => {
                 </Link> */}
               </Grid>
               <Grid item>
-                <Link to='/signup' variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link to='/login' variant="body2">
+                  {"Already have an account? Log In"}
                 </Link>
               </Grid>
             </Grid>
@@ -226,4 +224,4 @@ const Login = props => {
     </Grid>
   );
 }
-export default Login
+export default Signup;

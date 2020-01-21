@@ -5,7 +5,7 @@ import { Map, GoogleApiWrapper } from 'google-maps-react';
 import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router'
 import { Input } from 'semantic-ui-react'
-
+import Pizza from '../Pizza'
 /* global google */
 
 
@@ -36,6 +36,7 @@ class StartPage extends React.Component {
         // this.setState({
         //     [place.target.name]: place.target.value
         // })
+        console.log(place)
       };
       
     
@@ -108,6 +109,8 @@ class StartPage extends React.Component {
             return <Redirect push to="/home" />;
           }
         return (
+            <div>
+              <Pizza/>
             <form className='image' onSubmit={this.handleSubmit}>
           <PlacesAutocomplete
             value={this.state.place}
@@ -151,6 +154,7 @@ class StartPage extends React.Component {
           </PlacesAutocomplete>
           {/* <input type='submit' value='submit'/> */}
           </form>
+          </div>
         );
       }
       
@@ -161,7 +165,7 @@ let addPlace = actions.addPlace
 let getQuery = actions.getQuery
 let fetchQuery = actions.fetchQuery
 let fetchPlace = actions.fetchPlace
-
+// export default StartPage
 export default connect(null, {addPlace, getQuery, fetchQuery, fetchPlace})(googleApi) ;
 
 

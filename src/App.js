@@ -7,6 +7,8 @@ import{ Route, Switch } from 'react-router'
 import NavBar from './components/NavBar'
 //
 import Login from './components/Login'
+import Signup from './components/Signup'
+
 import HomePage from './components/HomePage'
 import StartPage from './components/StartPage'
 import actions from './redux/actions'
@@ -20,14 +22,16 @@ import {connect} from 'react-redux'
 // class App extends Component {
   const App = () => {
     
-//     const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     
-//     useEffect(() => {
-//       dispatch(allPlaces())
-//     },
-//     [dispatch]
-//     )
+    // useEffect(() => {
+    //   dispatch(allPlaces())
+    // },
+    // [dispatch]
+    // ) 
+
     
+
     const state = useSelector(state => {
       return{
         place: state.place,
@@ -39,8 +43,10 @@ import {connect} from 'react-redux'
     const dispatch = useDispatch()
     
     useEffect(() => {
-      
-      dispatch(actions.getPlace(state.query))
+      if (localStorage.token) {
+        dispatch(actions.persistUser());
+      }
+      // dispatch(actions.getPlace(state.query))
       
       // dispatch(actions.getQuery())
       console.log(state.query)
@@ -50,15 +56,16 @@ import {connect} from 'react-redux'
     return (
       <div>
         
-        <NavBar/>
-        <Pizza/>
+        
+        
         <Switch>
           <Route path='/login' render={() => <Login/>}/>
+          <Route path='/signup' render={() => <Signup/>}/>
           <Route path='/home' render={() => <HomePage/>}/>
           <Route path='/startpage' render={() => <StartPage />}/>
         </Switch>
 
-        <h1> hello from App! </h1>
+        {/* <h1> hello from App! </h1> */}
         
         
       </div>

@@ -20,10 +20,12 @@ import 'semantic-ui-css/semantic.min.css'
 //REDUCERS
 import place from './redux/placeReducer'
 import query from './redux/queryReducer'
+import login from './redux/loginReducer'
 
 const rootReducer = combineReducers({
     place: place,
-    query: query
+    query: query,
+    login: login
   })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -35,6 +37,7 @@ ReactDOM.render(
     
     <Provider store={store}>
     <Router>
+        <NavBar/>
         <App>
             {/* <NavBar/> */}
 

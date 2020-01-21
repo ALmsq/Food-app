@@ -1,27 +1,39 @@
 import React from 'react'
 import { Grid, Image, Card, Rating } from 'semantic-ui-react'
+import { useSelector } from 'react-redux'
 
 // const onClick = (e) => {
 //     console.log()
 // }
 const API_KEY = process.env.REACT_APP_GOOGLE_KEY
 
-const Place = (c) => {
+const Places = (c) => {
+    const place = useSelector(state=> state.place)
     // let URL = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${c.c.reference}&key=${API_KEY}`
-    let photo = (c.c.photos[0].photo_reference)
+    // let photo = (c.c.photos[0].photo_reference)
     let ifPhoto = (c.c.photos? c.c.photos[0].photo_reference : "CmRaAAAAhITrIBjd8kRzu0ahi_XZAb32Skza-3DgpwLPabXm5iVZa26xPBdHcC2Keip0bpuUimsoG0wP_aECeM4wE8kc55Ebvjisca6bgsjh_OOjRtrjQRdDzVcpyEMPAub8AhcIEhBH40_RFwrYLiHhzyz-xKAGGhQAKLLb3VR7Hd9qSWV2H4O90Suxzg")
     let ifOpen = (c.c.opening_hours? c.c.opening_hours['open_now']? 'Open':'Closed' : '')
-    console.log(c.c.photos[0].photo_reference)
+    // console.log(c.c.photos[0].photo_reference)
     // console.log(API_KEY)
+
+    const onClick =(e) =>{
+        // console.log(e.target)
+        // console.log(c.c)
+        console.log(e)
+    }
+    // console.log(c.onClick())
+    // console.log(c)
     return (
         // <div>
         //     <h3>{c.c.name}</h3>
         //     <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=200&photoreference=${photo}&key=${API_KEY}`}/>
         //     {/* <h2>{c.c.photos}</h2> */}
         // </div>
+
+        
         
         <Grid.Column>
-            <Card>
+            <Card onClick={()=>onClick(c.c)} >
                 <Image src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=200&photoreference=${ifPhoto}&key=${API_KEY}`}/>
                 <Card.Content>
                     <Card.Header>{c.c.name}</Card.Header>
@@ -46,7 +58,7 @@ const Place = (c) => {
 
 
 
-export default Place
+export default Places
 
 /////////////////////////////////////////
 

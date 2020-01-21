@@ -1,9 +1,9 @@
 import React from 'react'
-import Place from './Place'
+import Places from './Place'
 import { connect } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { Grid, Image } from 'semantic-ui-react'
-
+import Pizza from '../Pizza'
 
 // class HomePage extends Component {
 //     render() {
@@ -19,17 +19,21 @@ import { Grid, Image } from 'semantic-ui-react'
     
 
 const HomePage = () => {
+        const username = useSelector(state => state.login.username)
         const places = useSelector(state => state.place)
         const query = useSelector(state => state.query)
         console.log(places)
         console.log(query)
 
-        const onClick = (e) => {
-            console.log('yo')
-        }
+        const text = username ? (
+            <h1>{username} is currently logged in</h1>
+          ) : (
+            <h1>Nobody is logged in</h1>
+          );
+          
 
         const generateCards = () => {
-            return places.map(c => <Place c={c} key={c.id} onClick={onClick} />);
+            return places.map(c => <Places c={c} key={c.id} />);
           };
 
         return(
@@ -38,11 +42,15 @@ const HomePage = () => {
             //     {generateCards()}
 
             // </div>
-            <Grid columns={3} divided>
+            <div>
+            <Pizza/>
+            <Grid columns={3} divided> 
                 <Grid.Row>
                         {generateCards()}
+                        <div>{text}</div>
                 </Grid.Row>
             </Grid>
+            </div>
         )
 }
 
